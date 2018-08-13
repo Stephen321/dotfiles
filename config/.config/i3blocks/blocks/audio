@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# Left click
+if [[ "${BLOCK_BUTTON}" -eq 1 ]]; then
+    volControl up
+# Middle click
+elif [[ "${BLOCK_BUTTON}" -eq 2 ]]; then
+    volControl mute
+# Right click
+elif [[ "${BLOCK_BUTTON}" -eq 3 ]]; then
+    volControl down
+fi
+
+# how to do this with pactl?
+statusLine=$(amixer get Master | tail -n 1)
+status=$(echo "${statusLine}" | grep -wo "on")
+
+CURRENT_VOL=$(volControl vol)
+if [[ "${status}" == "on" ]]; then
+    echo "$CURRENT_VOL%"
+    echo "$CURRENT_VOL%"
+    echo ""
+else
+    echo "off"
+    echo "off"
+    echo ""
+fi
