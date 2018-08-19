@@ -15,7 +15,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'arcticicestudio/nord-vim'
-
+Plug 'christoomey/vim-tmux-navigator'
 " Plug 'flazz/vim-colorschemes'
 " Plug 'junegunn/fzf'
 " Plug 'junegunn/fzf.vim'
@@ -42,6 +42,13 @@ Plug 'arcticicestudio/nord-vim'
 " Plugin 'Rip-Rip/clang_complete'
 " Plugin 'maralla/completor.vim'
 " Plugin 'Valloric/YouCompleteMe'
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
 
 call plug#end()            " required
 
@@ -68,6 +75,11 @@ set background=light
   "  set columns=100
   "endif
 " endif
+
+" options for deoplete
+let g:deoplete#enable_at_startup = 1
+" deoplete tab-complete
+ inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
 "" options for YouCompleteMe
 "" disable any other completion plugin, syntastic
@@ -204,7 +216,7 @@ nnoremap <F6> :make<cr><cr><cr> :make run<cr>
 inoremap jk <esc>
 inoremap jj <esc>
 
-" use alt and hjkl to move from any mode
+" use alt and hjkl to move from any mode (terminal included)
 if has('nvim')
     tnoremap jk <C-\><C-n>
     tnoremap jj <C-\><C-n>
@@ -222,6 +234,17 @@ nnoremap <A-j> <C-w>j
 nnoremap <A-k> <C-w>k
 nnoremap <A-l> <C-w>l
 
+" also allow alt and hjkl to move between tmux splits
+" https://github.com/christoomey/vim-tmux-navigator
+let g:tmux_navigator_no_mappings = 1
+nnoremap <silent> <A-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <A-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <A-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <A-l> :TmuxNavigateRight<cr>
+nnoremap <silent> <A-\> :TmuxNavigatePrevious<cr>
+" Write all buffers before navigating from Vim to tmux pane
+" let g:tmux_navigator_save_on_switch = 2
+
 " D and C operate to the end of the line. Y copies the entire line which yy
 " already does.
 nnoremap Y y$
@@ -233,19 +256,6 @@ nnoremap S :w<cr>
 " so map space to leader instead of making it leader
 " TODO
 
-" https://github.com/christoomey/vim-tmux-navigator
-" mappings and settings for nagivating tmux panes and vim windows
-" using <Esc>h means Alt-h because term produces ^[h when pressed.
-" https://stackoverflow.com/questions/5379837/is-it-possible-to-mapping-alt-hjkl-in-insert-mode
-" let g:tmux_navigator_no_mappings = 1
-" nnoremap <silent> <Esc>h :TmuxNavigateLeft<cr>
-" nnoremap <silent> <Esc>j :TmuxNavigateDown<cr>
-" nnoremap <silent> <Esc>k :TmuxNavigateUp<cr>
-" nnoremap <silent> <Esc>l :TmuxNavigateRight<cr>
-" nnoremap <silent> <Esc>\ :TmuxNavigatePrevious<cr>
-
-" Write all buffers before navigating from Vim to tmux pane
-" let g:tmux_navigator_save_on_switch = 2
 
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 " xmap ga <Plug>(EasyAlign)

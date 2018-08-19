@@ -8,9 +8,10 @@ plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
 
 # fix shell issue 1 from here for powerline:
 # http://powerline.readthedocs.io/en/master/troubleshooting.html#shell-issues
-if [ -d "$HOME/.local/bin" ]; then
-     export PATH="$HOME/.local/bin:$PATH"
-fi
+#if [ -d "$HOME/.local/bin" ]; then
+#     export PATH="$HOME/.local/bin:$PATH"
+#fi
+
 export EDITOR="nvim"
 export USE_EDITOR=$EDITOR
 export VISUAL=$EDITOR
@@ -60,5 +61,5 @@ if ! pgrep -u "$USER" ssh-agent > /dev/null; then
     ssh-agent > ~/.ssh-agent-thing
 fi
 if [[ "$SSH_AGENT_PID" == "" ]]; then
-    eval "$(<~/.ssh-agent-thing)"
+    eval "$(<~/.ssh-agent-thing)" >/dev/null
 fi
