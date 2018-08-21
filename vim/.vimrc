@@ -42,6 +42,15 @@ Plug 'christoomey/vim-tmux-navigator'
 " Plugin 'Rip-Rip/clang_complete'
 " Plugin 'maralla/completor.vim'
 " Plugin 'Valloric/YouCompleteMe'
+
+" -------------------------------------------------------------
+" LSP and completion and snippets:
+
+" another option: vim-lsp, async-vim, asynccomplete.vim, cquery
+" Plug 'prabirshrestha/asyncomplete.vim'
+
+
+" deoplete + LanguageClient-neovim + cquery + neovim-snippets
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 else
@@ -49,8 +58,9 @@ else
   Plug 'roxma/nvim-yarp'
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
+" -------------------------------------------------------------
 
-call plug#end()            " required
+call plug#end()
 
 
 set encoding=utf-8
@@ -79,7 +89,8 @@ set background=light
 " options for deoplete
 let g:deoplete#enable_at_startup = 1
 " deoplete tab-complete
- inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+inoremap <expr><S-tab> pumvisible() ? "\<c-p>" : "\<S-tab>"
 
 "" options for YouCompleteMe
 "" disable any other completion plugin, syntastic
