@@ -63,3 +63,13 @@ fi
 if [[ "$SSH_AGENT_PID" == "" ]]; then
     eval "$(<~/.ssh-agent-thing)" >/dev/null
 fi
+
+# https://mike.place/2017/fzf-fd/
+export FZF_DEFAULT_COMMAND="fd ."
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND="fd -t d ."
+
+
+HISTFILE="$HOME/.zsh_history"
+HISTSIZE=10000000
+SAVEHIST=10000000
