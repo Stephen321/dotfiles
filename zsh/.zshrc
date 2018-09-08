@@ -53,9 +53,6 @@ alias trizenRemoveOrphans="trizen -Rsun $(trizen -Qdt | awk -F ' ' '{print $1}')
 alias trizenUpdate="trizen -Syu"
 
 
-export PATH=~/bin:$PATH
-
-
 # https://wiki.archlinux.org/index.php/SSH_keys#SSH_agents
 if ! pgrep -u "$USER" ssh-agent > /dev/null; then
     ssh-agent > ~/.ssh-agent-thing

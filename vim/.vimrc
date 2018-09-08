@@ -39,6 +39,11 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ 'do': 'bash install.sh',
     \ }
 
+" Lua completions
+" TODO: Onmi complete gives errors with deoplete. Using lua-lsp instead.
+" Plug 'xolox/vim-misc'
+" Plug 'xolox/vim-lua-ftplugin'
+
 " ALE for linting and syntax underlining
 Plug 'w0rp/ale'
 
@@ -88,9 +93,28 @@ let g:deoplete#sources = {}
 let g:deoplete#sources._ = ['buffer']
 let g:deoplete#sources.c =   ['buffer', 'tag', 'member', 'file', 'omni', 'LanguageClient','ultisnips','ALE']
 let g:deoplete#sources.cpp = ['buffer', 'tag', 'member', 'file', 'omni', 'LanguageClient','ultisnips','ALE']
+" let g:deoplete#sources.lua = ['buffer', 'tag', 'member', 'file', 'omni', 'LanguageClient','ultisnips','ALE']
+let g:deoplete#sources.lua = ['buffer', 'tag', 'member', 'file', 'LanguageClient','ultisnips','ALE']
 call deoplete#custom#source('ultisnips', 'matchers', ['matcher_fuzzy'])
 " deoplete opens preview window when completing to show documentation
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+
+
+" https://github.com/Shougo/deoplete.nvim/issues/458
+" TODO: Onmi complete gives errors with deoplete. Using lua-lsp instead.
+" let g:lua_check_syntax = 0
+" let g:lua_complete_omni = 1
+" let g:lua_define_completefunc = 0
+" let g:lua_complete_dynamic = 0
+" let g:lua_define_completion_mappings = 0
+" if !exists('g:deoplete#omni#functions')
+"   let g:deoplete#omni#functions = {}
+"   let g:deoplete#omni#functions.lua = 'xolox#lua#omnifunc'
+" else
+"   let g:deoplete#omni#functions.lua = 'xolox#lua#omnifunc'
+" endif
+" let g:deoplete#omni#input_patterns = {}
+" let g:deoplete#omni#input_patterns.lua = '\w+|[^. *\t][.:]\w*'
 
 " tab to cycel through deoplete
 " https://github.com/Shougo/deoplete.nvim/issues/310
@@ -114,7 +138,8 @@ let g:LanguageClient_serverCommands = {
 \ 'c': ['cquery',
 \ '--language-server',
 \ '--log-file=/tmp/cq.log',
-\ '--init={"cacheDirectory":"/tmp/cquery"}']
+\ '--init={"cacheDirectory":"/tmp/cquery"}'],
+\ 'lua': ['lua-lsp'],
 \ }
 nnoremap <F3> :call LanguageClient_contextMenu()<CR>
 nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
