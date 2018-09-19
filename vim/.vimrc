@@ -381,9 +381,9 @@ set listchars=eol:¬,tab:␉·,trail:␠,nbsp:⎵
 set mouse+=a
 
 " set virtualedit=all       " edit where there isnt any spaces
-set shiftwidth=4
-set tabstop=4
-set softtabstop=4
+set shiftwidth=2
+set tabstop=2
+set softtabstop=2
 set expandtab
 
 " splt to the right and below
