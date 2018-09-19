@@ -3,7 +3,7 @@ export QT_QPA_PLATFORMTHEME=qt5ct
 
 
 # https://stackoverflow.com/questions/47345147/android-sdk-manager-throw-exception-with-java-9
-export JAVA_OPTS='--add-modules java.xml.bind'
+# export JAVA_OPTS='--add-modules java.xml.bind'
 
 # android ndk installed via android studio
 # note other paths/env vars added via android-.*-dummy aur packages
