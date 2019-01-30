@@ -16,6 +16,7 @@ exec --no-startup-id ~/.fehbg &
 exec --no-startup-id dunst
 exec --no-startup-id xclip
 exec --no-startup-id nm-applet
+exec --no-startup-id termite
 
 set $mod Mod4
 
