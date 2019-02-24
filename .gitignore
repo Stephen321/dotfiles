@@ -1,0 +1,5 @@
+# Don't track plugins or locally created data
+vim/.vim/.netrwhist
+vim/.vim/plugged/
+zsh/.oh-my-zsh/cache/
+zsh/.oh-my-zsh/custom/plugins/

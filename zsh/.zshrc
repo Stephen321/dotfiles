@@ -44,13 +44,23 @@ stty ixany
 #setopt rm_star_silent
 
 
-# on arch linux you can just pacman install syntax-highlighting and autosuggestions, then just source it. Could also clone and install to ~/.oh-my-zsh
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+# on arch linux you can just pacman install syntax-highlighting and autosuggestions, then just source it without any oh-my-zsh plugin manager
+# source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+ZSH_PLUG_BASE_PATH=${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins
+ZSH_SYNTAX_HIGHLIGHTING_PLUG_PATH="$ZSH_PLUG_BASE_PATH/zsh-syntax-highlighting"
+ZSH_AUTO_SUGGESTIONS_PLUG_PATH="$ZSH_PLUG_BASE_PATH/zsh-autosuggestions"
+if [[ ! -a $ZSH_SYNTAX_HIGHLIGHTING_PLUG_PATH ]]; then
+  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_SYNTAX_HIGHLIGHTING_PLUG_PATH
+fi
+if [[ ! -a $ZSH_AUTO_SUGGESTIONS_PLUG_PATH ]]; then
+  git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_AUTO_SUGGESTIONS_PLUG_PATH
+fi
 
-
-alias trizenRemoveOrphans="trizen -Rsun $(trizen -Qdt | awk -F ' ' '{print $1}')"
-alias trizenUpdate="trizen -Syu"
+if hash trizen 2> /dev/null; then
+  alias trizenRemoveOrphans="trizen -Rsun $(trizen -Qdt | awk -F ' ' '{print $1}')"
+  alias trizenUpdate="trizen -Syu"
+fi
 
 
 # https://wiki.archlinux.org/index.php/SSH_keys#SSH_agents
