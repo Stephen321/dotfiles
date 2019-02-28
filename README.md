@@ -10,22 +10,13 @@ dotfiles using stow
   - Might have to select one of the powerline patched fonts in terminal.
   - note that vim uses vim-airline instead of powerline but still requires powerline patched font?
 - cd ~
-- git clone https://github.com/Stephen321/dotfiles.git
+- git clone --recurse-submodules https://github.com/Stephen321/dotfiles.git
 - cd dotfiles
 - stow X *(note: if any of the files under X/ already exist in ../ then they won't be overriden unless using --override=\*)*
 - chsh -s /bin/zsh
+- use zsh and it will install plugins/themes the first time
 
 ### Note:
-- .oh-my-zsh git repos isn't tracked so manually need to update if needed
-
-
 To update oh-my-zsh directory:
-- cd ~/dotfiles/zsh/.oh-my-zsh
-- git init
-- git remote add origin https://github.com/robbyrussell/oh-my-zsh
-- git fetch --all
-- git reset --hard origin/master
-- git pull
-- rm -rf .git/
-- git commit -am "updated .oh-my-zsh directory"
-- git push
+- git submodule update --remote zsh/.oh-my-zsh
+- (maybe) git commit/add/push
