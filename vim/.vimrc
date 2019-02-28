@@ -281,7 +281,7 @@ map <space> <leader>
 
 " fzf mappings
 " only search files not in gitignore
-nnoremap <leader>f :GFiles<cr> 
+nnoremap <leader>f :GFiles<cr>
 "search all files if you really want to
 nnoremap <leader>af :Files<cr>
 "fzf grep (with ripgrep,ag etc)
