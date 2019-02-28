@@ -9,7 +9,11 @@ dotfiles using stow
   - Otherwise install with pip and also install fonts (install directory might be different than what dotfiles are configured for)
   - Might have to select one of the powerline patched fonts in terminal.
   - note that vim uses vim-airline instead of powerline but still requires powerline patched font?
+- cd ~
 - git clone https://github.com/Stephen321/dotfiles.git
 - cd dotfiles
 - stow X *(note: if any of the files under X/ already exist in ../ then they won't be overriden unless using --override=\*)*
 - chsh -s /bin/zsh
+
+### Note:
+- has to be at ~/dotfiles as .zshrc uses this to source some setup files
