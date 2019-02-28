@@ -16,9 +16,17 @@ export EDITOR="nvim"
 export USE_EDITOR=$EDITOR
 export VISUAL=$EDITOR
 
-# https://wiki.archlinux.org/index.php/Powerline#Zsh
-powerline-daemon -q
-source /usr/lib/python3.7/site-packages/powerline/bindings/zsh/powerline.zsh
+# https://github.com/powerline/powerline
+if hash powerline-daemon 2> /dev/null; then
+  powerline-daemon -q
+
+  # different directory if on arch linux
+  if hash pacman 2> /dev/null; then
+    source /usr/lib/python3.7/site-packages/powerline/bindings/zsh/powerline.zsh
+  else
+    source /usr/share/powerline/bindings/zsh/powerline.zsh
+  fi
+fi
 
 # source zsh and set theme
 # https://github.com/denysdovhan/spaceship-prompt
