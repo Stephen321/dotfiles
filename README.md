@@ -17,3 +17,15 @@ dotfiles using stow
 
 ### Note:
 - .oh-my-zsh git repos isn't tracked so manually need to update if needed
+
+
+To update oh-my-zsh directory:
+- cd ~/dotfiles/zsh/.oh-my-zsh
+- git init
+- git remote add origin https://github.com/robbyrussell/oh-my-zsh
+- git fetch --all
+- git reset --hard origin/master
+- git pull
+- rm -rf .git/
+- git commit -am "updated .oh-my-zsh directory"
+- git push
