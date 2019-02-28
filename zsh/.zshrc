@@ -28,16 +28,12 @@ if hash powerline-daemon 2> /dev/null; then
   fi
 fi
 
-# clone custom theme
-SPACESHIP_THEME_BASE_PATH="${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes"
-SPACESHIP_THEME_DIR_NAME="spaceship-prompt"
-if [[ ! -a "$SPACESHIP_THEME_BASE_PATH/$SPACESHIP_THEME_DIR_NAME" ]]; then
-  git clone https://github.com/denysdovhan/spaceship-prompt.git "$SPACESHIP_THEME_BASE_PATH/$SPACESHIP_THEME_DIR_NAME"
-  ln -s "$SPACESHIP_THEME_BASE_PATH/$SPACESHIP_THEME_DIR_NAME/spaceship.zsh-theme" "$SPACESHIP_THEME_BASE_PATH/spaceship.zsh-theme"
-fi
+# sourced before oh-my-zsh so no $ZSH_CUSTOM exists
+ZSH_SETUP_DIR=~/.zsh_setup
+source $ZSH_SETUP_DIR/setup_themes.zsh
+source $ZSH_SETUP_DIR/setup_plugins.zsh
 
 # source zsh and set theme
-# https://github.com/denysdovhan/spaceship-prompt
 ZSH_THEME="spaceship"
 source $ZSH/oh-my-zsh.sh
 
@@ -58,20 +54,6 @@ stty ixany
 
 # https://unix.stackexchange.com/questions/135084/double-rm-verification-in-zsh
 #setopt rm_star_silent
-
-
-# on arch linux you can just pacman install syntax-highlighting and autosuggestions, then just source it without any oh-my-zsh plugin manager
-# source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-# source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-ZSH_PLUG_BASE_PATH="${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins"
-ZSH_SYNTAX_HIGHLIGHTING_PLUG_PATH="$ZSH_PLUG_BASE_PATH/zsh-syntax-highlighting"
-ZSH_AUTO_SUGGESTIONS_PLUG_PATH="$ZSH_PLUG_BASE_PATH/zsh-autosuggestions"
-if [[ ! -a $ZSH_SYNTAX_HIGHLIGHTING_PLUG_PATH ]]; then
-  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_SYNTAX_HIGHLIGHTING_PLUG_PATH
-fi
-if [[ ! -a $ZSH_AUTO_SUGGESTIONS_PLUG_PATH ]]; then
-  git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_AUTO_SUGGESTIONS_PLUG_PATH
-fi
 
 if hash trizen 2> /dev/null; then
   alias trizenRemoveOrphans="trizen -Rsun $(trizen -Qdt | awk -F ' ' '{print $1}')"
