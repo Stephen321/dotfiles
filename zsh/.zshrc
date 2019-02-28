@@ -32,6 +32,7 @@ fi
 ZSH_SETUP_DIR=~/.zsh_setup
 source $ZSH_SETUP_DIR/setup_themes.zsh
 source $ZSH_SETUP_DIR/setup_plugins.zsh
+source $ZSH_SETUP_DIR/setup_alias.zsh
 
 # source zsh and set theme
 ZSH_THEME="spaceship"
