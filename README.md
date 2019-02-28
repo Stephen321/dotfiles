@@ -16,4 +16,4 @@ dotfiles using stow
 - chsh -s /bin/zsh
 
 ### Note:
-- has to be at ~/dotfiles as .zshrc uses this to source some setup files
+- .oh-my-zsh git repos isn't tracked so manually need to update if needed
