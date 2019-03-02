@@ -2,6 +2,7 @@
 dotfiles using stow
 
 - install git, stow, zsh
+- install neovim (expected is neovim for alias etc, could be changed locally)
 - install powerline
   - https://powerline.readthedocs.io/en/latest/installation.html
   - on Ubuntu/Arch linux can install with package manager
