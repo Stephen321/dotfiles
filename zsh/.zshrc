@@ -6,12 +6,6 @@ COMPLETION_WAITING_DOTS="true"
 plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
 
 
-# fix shell issue 1 from here for powerline:
-# http://powerline.readthedocs.io/en/master/troubleshooting.html#shell-issues
-#if [ -d "$HOME/.local/bin" ]; then
-#     export PATH="$HOME/.local/bin:$PATH"
-#fi
-
 export EDITOR="nvim"
 export USE_EDITOR=$EDITOR
 export VISUAL=$EDITOR
@@ -33,6 +27,7 @@ ZSH_SETUP_DIR=~/.zsh_setup
 source $ZSH_SETUP_DIR/setup_themes.zsh
 source $ZSH_SETUP_DIR/setup_plugins.zsh
 source $ZSH_SETUP_DIR/setup_alias.zsh
+source $ZSH_SETUP_DIR/setup_path.zsh
 
 # source zsh and set theme
 ZSH_THEME="spaceship"
