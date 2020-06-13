@@ -25,19 +25,19 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
+" if has('nvim')
+"   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" else
+"   Plug 'Shougo/deoplete.nvim'
+"   Plug 'roxma/nvim-yarp'
+"   Plug 'roxma/vim-hug-neovim-rpc'
+" endif
 
 " LCN for completion and LSP
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
+" Plug 'autozimu/LanguageClient-neovim', {
+"     \ 'branch': 'next',
+"     \ 'do': 'bash install.sh',
+"     \ }
 
 " Lua completions
 " TODO: Onmi complete gives errors with deoplete. Using lua-lsp instead.
@@ -45,7 +45,7 @@ Plug 'autozimu/LanguageClient-neovim', {
 " Plug 'xolox/vim-lua-ftplugin'
 
 " ALE for linting and syntax underlining
-Plug 'w0rp/ale'
+" Plug 'w0rp/ale'
 
 " ------------------------------------------------------------
 
@@ -95,7 +95,7 @@ let g:deoplete#sources.c =   ['buffer', 'tag', 'member', 'file', 'omni', 'Langua
 let g:deoplete#sources.cpp = ['buffer', 'tag', 'member', 'file', 'omni', 'LanguageClient','ultisnips','ALE']
 " let g:deoplete#sources.lua = ['buffer', 'tag', 'member', 'file', 'omni', 'LanguageClient','ultisnips','ALE']
 let g:deoplete#sources.lua = ['buffer', 'tag', 'member', 'file', 'LanguageClient','ultisnips','ALE']
-call deoplete#custom#source('ultisnips', 'matchers', ['matcher_fuzzy'])
+" call deoplete#custom#source('ultisnips', 'matchers', ['matcher_fuzzy'])
 " deoplete opens preview window when completing to show documentation
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
