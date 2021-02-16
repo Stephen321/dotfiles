@@ -61,9 +61,9 @@ fi
 if ! pgrep -u "$USER" ssh-agent > /dev/null; then
     ssh-agent > ~/.ssh-agent-thing
 fi
-if [[ "$SSH_AGENT_PID" == "" ]]; then
-    eval "$(<~/.ssh-agent-thing)" >/dev/null
-fi
+# if [[ "$SSH_AGENT_PID" == "" ]]; then
+#     eval "$(<~/.ssh-agent-thing)" >/dev/null
+# fi
 
 # https://mike.place/2017/fzf-fd/
 export FZF_DEFAULT_COMMAND="fd ."
