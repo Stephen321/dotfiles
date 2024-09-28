@@ -1,0 +1,6 @@
+2024/09/17-13:06:32.371 d81 Creating DB /home/stephen/.config/obsidian/WebStorage/2/IndexedDB/indexeddb.leveldb since it was missing.
+2024/09/17-13:06:32.374 d81 Reusing MANIFEST /home/stephen/.config/obsidian/WebStorage/2/IndexedDB/indexeddb.leveldb/MANIFEST-000001
+2024/09/17-13:06:33.447 d81 Level-0 table #5: started
+2024/09/17-13:06:33.451 d81 Level-0 table #5: 2575 bytes OK
+2024/09/17-13:06:33.453 d81 Delete type=0 #3
+2024/09/17-13:06:33.454 d1d Manual compaction at level-0 from '\x00\x02\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x03\x00\x00\x00' @ 0 : 0; will stop at (end)
