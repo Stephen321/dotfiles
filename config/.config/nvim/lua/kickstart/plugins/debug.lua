@@ -23,6 +23,9 @@ return {
 
 		-- Add your own debuggers here
 		"mfussenegger/nvim-dap-python",
+
+		-- Virtual inline text for value of locales
+		"theHamsta/nvim-dap-virtual-text",
 	},
 	keys = function(_, keys)
 		local dap = require("dap")
@@ -63,6 +66,7 @@ return {
 			-- online, please don't ask me how to install them :)
 			ensure_installed = {
 				-- Update this to ensure that you have the debuggers for the langs you want
+				"python", -- not sure I need this
 				"debugpy",
 			},
 		})
@@ -93,13 +97,22 @@ return {
 		dap.listeners.before.event_terminated["dapui_config"] = dapui.close
 		dap.listeners.before.event_exited["dapui_config"] = dapui.close
 
-		-- Install golang specific config
-		-- require("dap-go").setup({
-		-- 	delve = {
-		-- 		-- On Windows delve must be run attached or it crashes.
-		-- 		-- See https://github.com/leoluz/nvim-dap-go/blob/main/README.md#configuring
-		-- 		detached = vim.fn.has("win32") == 0,
-		-- 	},
-		-- })
+		-- setup virtual text
+		require("nvim-dap-virtual-text").setup({})
+
+		-- Python specific setup
+		-- requires debugpy to be globally pip installed. not sure how to make it use .venv..
+		local dap_python = require("dap-python")
+		local path = require("mason-registry").get_package("debugpy"):get_install_path()
+
+		-- TODO: should be able to use linux-cultist/venv-selector to automatically set python venv in project and find python from there
+		dap_python.setup(path .. "/venv/Scripts/python.exe")
+		-- Then this can be the simple one again? (After you 'uv install --dev debugpy' in the python project)
+		-- dap_python.setup("python")
+		dap_python.test_runner = "pytest"
+		dap_python.detached = vim.fn.has("win32") == 0
+		vim.keymap.set("n", "<leader>dn", dap_python.test_method, { desc = "Python test method" })
+		vim.keymap.set("n", "<leader>df", dap_python.test_class, { desc = "Python test class" })
+		-- vim.keymap.set("n", "<leader>dS", require("dap-python").debug_selection, { desc = "Python debug selection" })
 	end,
 }

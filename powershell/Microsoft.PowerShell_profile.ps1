@@ -20,5 +20,6 @@ Set-PSReadLineKeyHandler -Key Tab -Function MenuComplete
 
 set FZF_DEFAULT_COMMAND="fd -type f"
 
+(& uv generate-shell-completion powershell) | Out-String | Invoke-Expression
 Invoke-Expression (& { (zoxide init powershell | Out-String) })
 Invoke-Expression (&starship init powershell)
