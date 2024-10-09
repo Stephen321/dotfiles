@@ -184,10 +184,12 @@ vim.keymap.set("i", "jk", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 --  Use CTRL+<hjkl> to switch between windows
 --
 --  See `:help wincmd` for a list of all window commands
-vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })
-vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
-vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
-vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
+--
+--  NOTE: using smart-splits to handle this instead
+-- vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })
+-- vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
+-- vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
+-- vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
@@ -409,7 +411,7 @@ require("lazy").setup({
 			vim.keymap.set("n", "<leader>sd", builtin.diagnostics, { desc = "[S]earch [D]iagnostics" })
 			vim.keymap.set("n", "<leader>sr", builtin.resume, { desc = "[S]earch [R]esume" })
 			vim.keymap.set("n", "<leader>s.", builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
-			vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "[ ] Find existing buffers" })
+			vim.keymap.set("n", "<leader>sb", builtin.buffers, { desc = "[ ] Find existing buffers" })
 
 			-- Slightly advanced example of overriding default behavior and theme
 			vim.keymap.set("n", "<leader>/", function()
@@ -642,12 +644,14 @@ require("lazy").setup({
 							disableOrganizeImports = true,
 							analysis = {
 								-- Ignore all files for analysis to exclusively use Ruff for linting
-								ignore = { "*" },
+								-- TODO: this disables static type checkign from pyright all together...
+								-- ignore = { "*" },
 								typeCheckingMode = "all",
 							},
 						},
 						python = {
 							-- UV stores venv in the project root under a ".venv" folder
+							-- TODO: windows specifc (maybe use venv-selector.nvim)
 							pythonPath = ".venv/Scripts/python.exe",
 						},
 					},
@@ -669,6 +673,7 @@ require("lazy").setup({
 			vim.list_extend(ensure_installed, {
 				"stylua", -- Used to format Lua code
 				"ruff", -- Used to format/lint Python code
+				"mypy", -- static type check for Python
 			})
 			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 

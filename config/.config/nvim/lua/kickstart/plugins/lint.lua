@@ -9,7 +9,14 @@ return {
 				markdown = { "markdownlint" },
 				-- TODO: including this here makes it doubled
 				-- python = { "ruff" },
+				python = { "mypy" },
 			}
+
+			-- as per here: https://github.com/mfussenegger/nvim-lint/blob/master/lua/lint/linters/mypy.lua
+			-- last arg is function to find python3 exe
+			local mypy_args = lint.linters.mypy.args
+			-- TODO: windows specific (maybe use venv-selector.nvim)
+			mypy_args[#mypy_args] = "./venv/Scripts/python.exe"
 
 			-- To allow other plugins to add linters to require('lint').linters_by_ft,
 			-- instead set linters_by_ft like this:
