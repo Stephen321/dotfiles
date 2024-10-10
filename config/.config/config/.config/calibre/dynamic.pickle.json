@@ -1,0 +1,25 @@
+{
+  "add books dialog dir": "/home/stephen/storage/calibre_library/Matt_Dinniman/Dungeon_Crawler_Carl",
+  "add books dialog dir-last-used-filter-spec-all-files": false,
+  "database location dialog": "/home/stephen/storage/calibre_library",
+  "notified-version-updates": {
+    "__class__": "set",
+    "__value__": [
+      "7.18"
+    ]
+  },
+  "recursive book import root dir dialog": "/home/stephen/Downloads",
+  "save to disk dialog": "/home/stephen/storage/calibre_library",
+  "sort_history": [
+    [
+      "timestamp",
+      false
+    ],
+    [
+      "timestamp",
+      false
+    ]
+  ],
+  "welcome_wizard_device": "kindle_pw",
+  "welcome_wizard_was_run": true
+}
