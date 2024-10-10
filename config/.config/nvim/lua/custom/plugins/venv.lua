@@ -4,7 +4,11 @@ return {
   branch = 'regexp',
   dependencies = { 'neovim/nvim-lspconfig', 'nvim-telescope/telescope.nvim', 'mfussenegger/nvim-dap', 'mfussenegger/nvim-dap-python' },
   config = function()
-    require('venv-selector').setup()
+    require('venv-selector').setup {
+      auto_refresh = true,
+      dap_enabled = true,
+      parents = 3,
+    }
   end,
   lazy = false,
   -- event = 'VeryLazy', -- Optional: needed only if you want to type `:VenvSelect` without a keymapping
