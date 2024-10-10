@@ -1,5 +1,5 @@
 
-command_timeout = 1000
+command_timeout = 1500
 
 ## FIRST LINE/ROW: Info & Status
 # First param ─┌
