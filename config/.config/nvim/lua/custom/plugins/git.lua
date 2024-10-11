@@ -5,7 +5,6 @@ return {
 		version = "*",
 		config = function()
 			if vim.fn.has("win32") == 1 then
-				vim.cmd([[colorscheme blue]])
 				-- https://github.com/akinsho/toggleterm.nvim/wiki/Tips-and-Tricks#using-toggleterm-with-powershell
 				local powershell_options = {
 					shell = vim.fn.executable("pwsh") == 1 and "pwsh" or "powershell",
