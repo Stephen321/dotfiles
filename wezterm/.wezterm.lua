@@ -1,5 +1,6 @@
 -- Pull in the wezterm API
 local wezterm = require("wezterm")
+local smart_splits = wezterm.plugin.require("https://github.com/mrjones2014/smart-splits.nvim")
 
 -- This will hold the configuration.
 local config = wezterm.config_builder()
@@ -40,26 +41,26 @@ config.keys = {
 		mods = "LEADER|CTRL",
 		action = wezterm.action.SendKey({ key = "a", mods = "CTRL" }),
 	},
-	{
-		key = "h",
-		mods = "LEADER",
-		action = wezterm.action.ActivatePaneDirection("Left"),
-	},
-	{
-		key = "l",
-		mods = "LEADER",
-		action = wezterm.action.ActivatePaneDirection("Right"),
-	},
-	{
-		key = "k",
-		mods = "LEADER",
-		action = wezterm.action.ActivatePaneDirection("Up"),
-	},
-	{
-		key = "j",
-		mods = "LEADER",
-		action = wezterm.action.ActivatePaneDirection("Down"),
-	},
+	-- {
+	-- 	key = "h",
+	-- 	mods = "LEADER",
+	-- 	action = wezterm.action.ActivatePaneDirection("Left"),
+	-- },
+	-- {
+	-- 	key = "l",
+	-- 	mods = "LEADER",
+	-- 	action = wezterm.action.ActivatePaneDirection("Right"),
+	-- },
+	-- {
+	-- 	key = "k",
+	-- 	mods = "LEADER",
+	-- 	action = wezterm.action.ActivatePaneDirection("Up"),
+	-- },
+	-- {
+	-- 	key = "j",
+	-- 	mods = "LEADER",
+	-- 	action = wezterm.action.ActivatePaneDirection("Down"),
+	-- },
 }
 
 --   -- This causes `wezterm` to act as though it was started as
@@ -73,6 +74,8 @@ config.keys = {
 -- For example, changing the color scheme:
 config.color_scheme = "Gruvbox dark, hard (base16)"
 
+-- you can put the rest of your Wezterm config here
+smart_splits.apply_to_config(config)
+
 -- and finally, return the configuration to wezterm
 return config
-
