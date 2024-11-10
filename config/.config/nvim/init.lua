@@ -565,14 +565,15 @@ require("lazy").setup({
 								-- Ignore all files for analysis to exclusively use Ruff for linting
 								-- TODO: this disables static type checkign from pyright all together...
 								-- ignore = { "*" },
-								typeCheckingMode = "all",
+								typeCheckingMode = "strict",
 							},
 						},
-						python = {
-							-- UV stores venv in the project root under a ".venv" folder
-							-- TODO: windows specifc (maybe use venv-selector.nvim)
-							-- pythonPath = ".venv/Scripts/python.exe",
-						},
+
+						-- TODO: using venv-selector.nvim now
+						-- python = {
+						-- 	-- UV stores venv in the project root under a ".venv" folder
+						-- 	-- pythonPath = ".venv/Scripts/python.exe",
+						-- },
 					},
 				},
 				taplo = {},
@@ -585,6 +586,8 @@ require("lazy").setup({
 			--  You can press `g?` for help in this menu.
 			require("mason").setup()
 
+			-- TODO: would be nice if debugpy/mypy/basedpyright could be used from venv-selector (uv add --dev [NAME]) instead of requiring them
+			-- to be installed from here (and check kickstart plugins /debug.lua file)
 			-- You can add other tools here that you want Mason to install
 			-- for you, so that they are available from within Neovim.
 			local ensure_installed = vim.tbl_keys(servers or {})
