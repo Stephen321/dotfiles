@@ -1,0 +1,10 @@
+Editor -> EditorSettings -> Text Editor -> External
+Exec Path = nvim
+Exec Flags = --server 127.0.0.1:6004 --remote-send "<esc>:n {file}<CR>:call cursor({line},{col})<CR>"
+
+Editor -> EditorSettings -> Network -> Language Server
+Enable and Show Native Symbols in Editor
+
+Editor -> EditorSettings -> Network -> Debug Adapter
+Sync Breakpoints
+

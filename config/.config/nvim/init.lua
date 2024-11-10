@@ -577,6 +577,9 @@ require("lazy").setup({
 					},
 				},
 				taplo = {},
+				-- TODO: can't have "gdscript" here because mason-tool-installer wouldn't know what to do with it
+				-- Not sure if we need gdtoolkit
+				gdtoolkit = {},
 			}
 			-- Ensure the servers and tools above are installed
 			--  To check the current status of installed tools and/or manually install
@@ -596,6 +599,7 @@ require("lazy").setup({
 				"ruff", -- Used to format/lint Python code
 				"mypy", -- static type check for Python
 			})
+
 			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
 			require("mason-lspconfig").setup({
@@ -610,9 +614,22 @@ require("lazy").setup({
 					end,
 				},
 			})
+
+			-- TODO: have to handle gdscript separately to mason-* plugins
+			require("lspconfig").gdscript.setup({
+				capabilities = capabilities,
+				name = "godot",
+				cmd = vim.lsp.rpc.connect("127.0.0.1", 6005),
+			})
+			local gdproject_file = vim.fn.getcwd() .. "/project.godot"
+			if gdproject_file then
+				vim.fn.serverstart("127.0.0.1:6004")
+			end
+			-- finish gdscript
 		end,
 	},
-
+	-- TODO: review if this is necessary. can't add anyway as it wants to git clone and always fails
+	-- { "habanax/vim-godot", event = "VimEnter" },
 	{ -- Autoformat
 		"stevearc/conform.nvim",
 		event = { "BufWritePre" },
@@ -706,6 +723,7 @@ require("lazy").setup({
 						luasnip.lsp_expand(args.body)
 					end,
 				},
+				-- TODO: possibly need to disable this https://www.reddit.com/r/neovim/comments/1c2bhcs/comment/ld778qd
 				completion = { completeopt = "menu,menuone,noinsert" },
 
 				-- For an understanding of why these mappings were
@@ -866,10 +884,10 @@ require("lazy").setup({
 		-- [[ Configure Treesitter ]] See `:help nvim-treesitter`
 		opts = {
 			ensure_installed = {
-				"bash",
-				"c",
+				-- "bash",
+				-- "c",
 				"diff",
-				"html",
+				-- "html",
 				"lua",
 				"luadoc",
 				"markdown",
@@ -877,6 +895,9 @@ require("lazy").setup({
 				"query",
 				"vim",
 				"vimdoc",
+				"rust",
+				"python",
+				"gdscript",
 			},
 			-- Autoinstall languages that are not installed
 			auto_install = true,
