@@ -106,9 +106,15 @@ return {
 		local path = require("mason-registry").get_package("debugpy"):get_install_path()
 
 		-- TODO: should be able to use linux-cultist/venv-selector to automatically set python venv in project and find python from there
-		-- dap_python.setup(path .. "/venv/Scripts/python.exe")
+		-- This is using the venv that mason installed debugpy is in...not venv in project..
+		if vim.fn.has("win32") == 1 then
+			dap_python.setup(path .. "/venv/Scripts/python.exe")
+		else
+			dap_python.setup(path .. "/venv/bin/python")
+		end
+
 		-- Then this can be the simple one again? (After you 'uv install --dev debugpy' in the python project)
-		dap_python.setup("python")
+		-- dap_python.setup("python")
 		dap_python.test_runner = "pytest"
 		dap_python.detached = vim.fn.has("win32") == 0
 		vim.keymap.set("n", "<leader>dn", dap_python.test_method, { desc = "Python test method" })
