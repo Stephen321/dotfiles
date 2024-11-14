@@ -79,6 +79,12 @@ vim.opt.scrolloff = 10
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
+-- Remove S from changing a line (use cc for that)
+-- Reusing for navigation plugin (flash atm but possibly others)
+-- del doesn't work
+-- vim.keymap.del("n", "S")
+vim.keymap.set("n", "S", "<NOP>")
+
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
@@ -621,10 +627,11 @@ require("lazy").setup({
 				name = "godot",
 				cmd = vim.lsp.rpc.connect("127.0.0.1", 6005),
 			})
-			local gdproject_file = vim.fn.getcwd() .. "/project.godot"
-			if gdproject_file then
-				vim.fn.serverstart("127.0.0.1:6004")
-			end
+			-- start nvim with --listen 127.0.0.1:6004
+			-- local gdproject_file = vim.fn.getcwd() .. "/project.godot"
+			-- if gdproject_file then
+			-- 	vim.fn.serverstart("127.0.0.1:6004")
+			-- end
 			-- finish gdscript
 		end,
 	},
