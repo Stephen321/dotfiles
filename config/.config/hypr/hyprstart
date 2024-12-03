@@ -12,7 +12,7 @@ export EDITOR=/usr/bin/nvim
 #browser
 export BROWSER=librewolf
 #terminal
-export TERM=foot
+export TERM=wezterm
 #mail
 export MAIL=thunderbird
 
