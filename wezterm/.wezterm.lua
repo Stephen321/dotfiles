@@ -5,6 +5,8 @@ local smart_splits = wezterm.plugin.require("https://github.com/mrjones2014/smar
 -- This will hold the configuration.
 local config = wezterm.config_builder()
 
+local is_linux = wezterm.target_triple:find("linux") ~= nil
+
 config.wsl_domains = {
 	{
 		-- The name of this specific domain.  Must be unique amonst all types
@@ -19,9 +21,13 @@ config.wsl_domains = {
 }
 -- config.default_domain = 'WSL:Ubuntu-22.04'
 
-config.default_prog = { "pwsh.exe" }
-
-config.default_cwd = "C:/dev/git"
+if is_linux then
+	config.enable_wayland = true
+	config.default_prog = { "/usr/bin/fish" }
+else
+	config.default_prog = { "pwsh.exe" }
+	config.default_cwd = "C:/dev/git"
+end
 
 config.leader = { key = "a", mods = "CTRL" }
 config.keys = {
@@ -72,7 +78,13 @@ config.keys = {
 -- This is where you actually apply your config choices
 
 -- For example, changing the color scheme:
-config.color_scheme = "Gruvbox dark, hard (base16)"
+
+if is_linux then
+	config.color_scheme = "Gruvbox dark, hard (base16)"
+	config.window_background_opacity = 0.5
+else
+	config.color_scheme = "Gruvbox dark, hard (base16)"
+end
 
 -- you can put the rest of your Wezterm config here
 smart_splits.apply_to_config(config)
