@@ -1,0 +1,9 @@
+gui:
+  showRandomTip: true
+
+os:
+  editPreset: 'nvim'
+
+keybinding:
+  universal:
+    quit: <c-g>

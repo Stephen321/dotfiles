@@ -18,6 +18,8 @@ Set-PsFzfOption -AltCCommand $commandOverride
 # Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }
 Set-PSReadLineKeyHandler -Key Tab -Function MenuComplete
 
+Set-PSReadLineKeyHandler -Chord 'Ctrl+g' -ScriptBlock { lazygit }
+
 set FZF_DEFAULT_COMMAND="fd -type f"
 
 (& uv generate-shell-completion powershell) | Out-String | Invoke-Expression
