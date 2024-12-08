@@ -49,22 +49,23 @@
 
 
 [core]
-    pager = delta
+  pager = delta
 
 [interactive]
-    diffFilter = delta --color-only
+  diffFilter = delta --color-only
 
 [delta]
-    navigate = true  # use n and N to move between diff sections
-    dark = true      # or light = true, or omit for auto-detection
-    ; https://dandavison.github.io/delta/custom-themes.html
-    ; features = gruvbox-dark
-    side-by-side = true
-    line-numbers = true
-    hyperlinks = true
+  navigate = true  # use n and N to move between diff sections
+  dark = true      # or light = true, or omit for auto-detection
+  ; https://dandavison.github.io/delta/custom-themes.html
+  ; features = gruvbox-dark
+  side-by-side = true
+  line-numbers = true
+  hyperlinks = true
 
 [merge]
-    conflictstyle = zdiff3tool = nvimdiff
+  conflictstyle = zdiff3
+  tool = nvimdiff
 
 [diff]
-    tool = nvimdiff
+  tool = nvimdiff
