@@ -10,15 +10,18 @@ return {
         -- LSP configuration
         server = {
           on_attach = function(client, bufnr)
-            -- TODO: not sure this does anything?
-            -- vim.keymap.set(
-            --   'n',
-            --   'K', -- Override Neovim's built-in hover keymap with rustaceanvim's hover actions
-            --   function()
-            --     vim.cmd.RustLsp { 'hover', 'actions' }
-            --   end,
-            --   { silent = true, buffer = bufnr }
-            -- ) -- you can also put keymaps in here
+            -- vim.keymap.set('n', '<leader>ca', function()
+            --   vim.cmd.RustLsp 'codeAction' -- supports rust-analyzer's grouping
+            --   -- or vim.lsp.buf.codeAction() if you don't want grouping.
+            -- end, { silent = true, buffer = bufnr })
+            vim.keymap.set(
+              'n',
+              'K', -- Override Neovim's built-in hover keymap with rustaceanvim's hover actions
+              function()
+                vim.cmd.RustLsp { 'hover', 'actions' }
+              end,
+              { silent = true, buffer = bufnr }
+            ) -- you can also put keymaps in here
           end,
           -- see :h rustaceanvim.mason
           cmd = function()
