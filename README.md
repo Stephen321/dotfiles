@@ -10,3 +10,6 @@
   - Don't think ruff is being used for linting/static analysis. Disabling
     rules in pyproject.toml doesn't change anything. Maybe need to set
     in it's venv?...
+
+
+- instead of 1 vim-fugutive. using gitsigns.nvim, diffview.nvim (this needs to be explicilty called), lazygit, delta (paging)

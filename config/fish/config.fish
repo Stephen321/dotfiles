@@ -172,8 +172,10 @@ if status --is-interactive && type -q fastfetch
    fastfetch --config neofetch.jsonc
 end
 
-# lazygit binding
-bind \cg 'lazygit'
+function fish_user_key_bindings 
+    # lazygit binding
+    bind \cg 'stty sane; lazygit'
+end
 
 zoxide init fish | source
 fzf --fish | source
