@@ -50,6 +50,7 @@
 
 [core]
   pager = delta
+  autocrlf = true
 
 [interactive]
   diffFilter = delta --color-only
@@ -62,6 +63,9 @@
   side-by-side = true
   line-numbers = true
   hyperlinks = true
+
+[difftool]
+  tool = nvimdiff
 
 [merge]
   conflictstyle = zdiff3
