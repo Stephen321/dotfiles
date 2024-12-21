@@ -79,6 +79,7 @@ config.keys = {
 
 -- General config
 config.hide_tab_bar_if_only_one_tab = true
+config.max_fps = 120 -- is ignored on Wayland
 
 -- OS specific config
 if is_linux then
