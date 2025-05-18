@@ -66,7 +66,7 @@ return {
 			-- online, please don't ask me how to install them :)
 			ensure_installed = {
 				-- Update this to ensure that you have the debuggers for the langs you want
-				"python", -- not sure I need this
+				"python", -- TODO: not sure I need this
 				"debugpy",
 			},
 		})
@@ -77,18 +77,18 @@ return {
 			-- Set icons to characters that are more likely to work in every terminal.
 			--    Feel free to remove or use ones that you like more! :)
 			--    Don't feel like these are good choices.
-			icons = { expanded = "▾", collapsed = "▸", current_frame = "*" },
+			icons = { expanded = "?", collapsed = "?", current_frame = "*" },
 			controls = {
 				icons = {
-					pause = "⏸",
-					play = "▶",
-					step_into = "⏎",
-					step_over = "⏭",
-					step_out = "⏮",
+					pause = "?",
+					play = "?",
+					step_into = "?",
+					step_over = "?",
+					step_out = "?",
 					step_back = "b",
-					run_last = "▶▶",
-					terminate = "⏹",
-					disconnect = "⏏",
+					run_last = "??",
+					terminate = "?",
+					disconnect = "?",
 				},
 			},
 		})
@@ -113,12 +113,24 @@ return {
 			dap_python.setup(path .. "/venv/bin/python")
 		end
 
-		-- Then this can be the simple one again? (After you 'uv install --dev debugpy' in the python project)
-		-- dap_python.setup("python")
-		dap_python.test_runner = "pytest"
-		dap_python.detached = vim.fn.has("win32") == 0
-		vim.keymap.set("n", "<leader>dn", dap_python.test_method, { desc = "Python test method" })
-		vim.keymap.set("n", "<leader>df", dap_python.test_class, { desc = "Python test class" })
-		-- vim.keymap.set("n", "<leader>dS", require("dap-python").debug_selection, { desc = "Python debug selection" })
+		-- NOTE: Wasn't really working...also shouldn't be setting keybindings specific to python for all filetypes
+		-- -- Then this can be the simple one again? (After you 'uv install --dev debugpy' in the python project)
+		-- -- dap_python.setup("python")
+		-- dap_python.test_runner = "pytest"
+		-- dap_python.detached = vim.fn.has("win32") == 0
+		-- vim.keymap.set("n", "<leader>dn", dap_python.test_method, { desc = "Python test method" })
+		-- vim.keymap.set("n", "<leader>df", dap_python.test_class, { desc = "Python test class" })
+		-- -- vim.keymap.set("n", "<leader>dS", require("dap-python").debug_selection, { desc = "Python debug selection" })
+
+		-- Godot specific setup
+		dap.configurations.gdscript = {
+			{
+				type = "godot",
+				request = "launch",
+				name = "Launch scene",
+				project = "${workspaceFolder}",
+				launch_scene = true,
+			},
+		}
 	end,
 }
