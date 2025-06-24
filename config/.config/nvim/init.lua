@@ -379,14 +379,13 @@ require("lazy").setup({
 	{
 		-- Main LSP Configuration
 		"neovim/nvim-lspconfig",
-		-- TODO:
-		-- https://github.com/mason-org/mason.nvim/discussions/1928
-		-- https://github.com/LazyVim/LazyVim/discussions/6052
-		version = "^1.0",
 		dependencies = {
+			-- TODO: mason and mason-lspconfig versions forced back to before v2 (breaking changes)
+			-- https://github.com/mason-org/mason.nvim/discussions/1928
+			-- https://github.com/LazyVim/LazyVim/discussions/6052
 			-- Automatically install LSPs and related tools to stdpath for Neovim
-			{ "williamboman/mason.nvim", config = true }, -- NOTE: Must be loaded before dependants
-			"williamboman/mason-lspconfig.nvim",
+			{ "williamboman/mason.nvim", version = "^1.0", config = true }, -- NOTE: Must be loaded before dependants
+			{ "williamboman/mason-lspconfig.nvim", version = "^1.0" },
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
 
 			-- Useful status updates for LSP.
