@@ -1,7 +1,7 @@
 return {
 	{
 		"mrcjkb/rustaceanvim",
-		version = "^5", -- Recommended
+		version = "^6", -- Recommended
 		lazy = false, -- This plugin is already lazy
 		config = function()
 			vim.g.rustaceanvim = {
@@ -22,6 +22,12 @@ return {
 							end,
 							{ silent = true, buffer = bufnr }
 						) -- you can also put keymaps in here
+
+						-- overwrite code action from init.lua
+						vim.keymap.set("n", "<leader>ca", function()
+							vim.cmd.RustLsp("codeAction") -- supports rust-analyzer's grouping
+							-- or vim.lsp.buf.codeAction() if you don't want grouping.
+						end, { silent = true, buffer = bufnr })
 					end,
 					-- see :h rustaceanvim.mason
 					cmd = function()

@@ -98,7 +98,7 @@ return {
 		dap.listeners.before.event_exited["dapui_config"] = dapui.close
 
 		-- setup virtual text
-		require("nvim-dap-virtual-text").setup({})
+		require("nvim-dap-virtual-text").setup({ enabled = true })
 
 		-- Python specific setup
 		-- requires debugpy to be globally pip installed. not sure how to make it use .venv..

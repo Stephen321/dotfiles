@@ -95,6 +95,12 @@ vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagn
 -- Toggle diagnostic hover
 vim.keymap.set("n", "<leader>td", vim.diagnostic.open_float, { desc = "Toggle diagnostic float window" })
 
+-- Global diagnostic settings
+vim.diagnostic.config({
+	virtual_text = true,
+	severity_sort = true,
+})
+
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
 -- is not what someone will guess without a bit more experience.
