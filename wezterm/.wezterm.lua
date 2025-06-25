@@ -78,8 +78,16 @@ config.keys = {
 -- This is where you actually apply your config choices
 
 -- General config
-config.hide_tab_bar_if_only_one_tab = true
 config.max_fps = 120 -- is ignored on Wayland
+config.hide_tab_bar_if_only_one_tab = true
+config.font_size = 11
+config.line_height = 0.95
+config.window_padding = {
+	left = "0.25cell",
+	right = "0",
+	top = "0.3cell",
+	bottom = "0",
+}
 
 -- OS specific config
 if is_linux then
