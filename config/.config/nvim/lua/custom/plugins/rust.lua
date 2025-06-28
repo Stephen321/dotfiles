@@ -10,10 +10,6 @@ return {
 				-- LSP configuration
 				server = {
 					on_attach = function(client, bufnr)
-						-- vim.keymap.set('n', '<leader>ca', function()
-						--   vim.cmd.RustLsp 'codeAction' -- supports rust-analyzer's grouping
-						--   -- or vim.lsp.buf.codeAction() if you don't want grouping.
-						-- end, { silent = true, buffer = bufnr })
 						vim.keymap.set(
 							"n",
 							"K", -- Override Neovim's built-in hover keymap with rustaceanvim's hover actions
@@ -55,17 +51,6 @@ return {
 		--
 		--     group = vim.api.nvim_create_augroup('rustaceanvim-lsp-attach', { clear = true }),
 		--     callback = function(event)
-		--       local map = function(keys, func, desc, mode)
-		--         mode = mode or 'n'
-		--         vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
-		--       end
-		--       map('<leader>a', function()
-		--         vim.cmd.RustLsp 'codeAction' -- supports rust-analyzer's grouping
-		--         -- or vim.lsp.buf.codeAction() if you don't want grouping.
-		--       end)
-		--       map('K', function() -- Override Neovim's built-in hover keymap with rustaceanvim's hover actions
-		--         vim.cmd.RustLsp { 'hover', 'actions' }
-		--       end)
 		--     end,
 		--   })
 		-- end,
