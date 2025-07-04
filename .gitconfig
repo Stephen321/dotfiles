@@ -73,3 +73,6 @@
 
 [diff]
   tool = nvimdiff
+[user]
+	name = Stephen321
+	email = Stephen321@users.noreply.github.com

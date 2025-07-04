@@ -1,7 +1,7 @@
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 # install WezTerm (could use winget..)
 # install rustup from website 
-winget install fzf sharkdp.fd lazygit dandavision.delta wezterm zoxide lsd-rs.lsd BurntSushi.ripgrep.MSVC JesseDuffield.lazygit
+winget install fzf sharkdp.fd lazygit dandavision.delta wezterm zoxide lsd-rs.lsd BurntSushi.ripgrep.MSVC JesseDuffield.lazygit Neovim.Neovim jj-vcs.jj
 Install-Module -Name PowerShellGet -Force
 Install-Module -Name PSFzf 
 Install-Module lsd-aliases -Scope CurrentUser -AllowClobber
