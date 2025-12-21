@@ -66,7 +66,7 @@ return {
 			-- online, please don't ask me how to install them :)
 			ensure_installed = {
 				-- Update this to ensure that you have the debuggers for the langs you want
-				"python", -- TODO: not sure I need this
+				"python", -- not sure I need this
 				"debugpy",
 			},
 		})
@@ -77,18 +77,18 @@ return {
 			-- Set icons to characters that are more likely to work in every terminal.
 			--    Feel free to remove or use ones that you like more! :)
 			--    Don't feel like these are good choices.
-			icons = { expanded = "?", collapsed = "?", current_frame = "*" },
+			icons = { expanded = "▾", collapsed = "▸", current_frame = "*" },
 			controls = {
 				icons = {
-					pause = "?",
-					play = "?",
-					step_into = "?",
-					step_over = "?",
-					step_out = "?",
+					pause = "⏸",
+					play = "▶",
+					step_into = "⏎",
+					step_over = "⏭",
+					step_out = "⏮",
 					step_back = "b",
-					run_last = "??",
-					terminate = "?",
-					disconnect = "?",
+					run_last = "▶▶",
+					terminate = "⏹",
+					disconnect = "⏏",
 				},
 			},
 		})
@@ -98,39 +98,31 @@ return {
 		dap.listeners.before.event_exited["dapui_config"] = dapui.close
 
 		-- setup virtual text
-		require("nvim-dap-virtual-text").setup({ enabled = true })
+		require("nvim-dap-virtual-text").setup({})
 
 		-- Python specific setup
 		-- requires debugpy to be globally pip installed. not sure how to make it use .venv..
 		local dap_python = require("dap-python")
-		local path = require("mason-registry").get_package("debugpy"):get_install_path()
+		-- local path = require("mason-registry").get_package("debugpy"):get_install_path()
+		--
+		-- -- TODO: should be able to use linux-cultist/venv-selector to automatically set python venv in project and find python from there
+		-- -- This is using the venv that mason installed debugpy is in...not venv in project..
+		-- if vim.fn.has("win32") == 1 then
+		-- 	dap_python.setup(path .. "/venv/Scripts/python.exe")
+		-- else
+		-- 	dap_python.setup(path .. "/venv/bin/python")
+		-- end
 
-		-- TODO: should be able to use linux-cultist/venv-selector to automatically set python venv in project and find python from there
-		-- This is using the venv that mason installed debugpy is in...not venv in project..
-		if vim.fn.has("win32") == 1 then
-			dap_python.setup(path .. "/venv/Scripts/python.exe")
-		else
-			dap_python.setup(path .. "/venv/bin/python")
-		end
+		-- v2 of mason causes https://github.com/LazyVim/LazyVim/issues/6039 with the above (get_install_path doesn't exist)
+		-- instead use "uv"
+		dap_python.setup("uv")
 
-		-- NOTE: Wasn't really working...also shouldn't be setting keybindings specific to python for all filetypes
-		-- -- Then this can be the simple one again? (After you 'uv install --dev debugpy' in the python project)
-		-- -- dap_python.setup("python")
-		-- dap_python.test_runner = "pytest"
-		-- dap_python.detached = vim.fn.has("win32") == 0
-		-- vim.keymap.set("n", "<leader>dn", dap_python.test_method, { desc = "Python test method" })
-		-- vim.keymap.set("n", "<leader>df", dap_python.test_class, { desc = "Python test class" })
-		-- -- vim.keymap.set("n", "<leader>dS", require("dap-python").debug_selection, { desc = "Python debug selection" })
-
-		-- Godot specific setup
-		dap.configurations.gdscript = {
-			{
-				type = "godot",
-				request = "launch",
-				name = "Launch scene",
-				project = "${workspaceFolder}",
-				launch_scene = true,
-			},
-		}
+		-- Then this can be the simple one again? (After you 'uv install --dev debugpy' in the python project)
+		-- dap_python.setup("python")
+		dap_python.test_runner = "pytest"
+		dap_python.detached = vim.fn.has("win32") == 0
+		vim.keymap.set("n", "<leader>dn", dap_python.test_method, { desc = "Python test method" })
+		vim.keymap.set("n", "<leader>df", dap_python.test_class, { desc = "Python test class" })
+		-- vim.keymap.set("n", "<leader>dS", require("dap-python").debug_selection, { desc = "Python debug selection" })
 	end,
 }

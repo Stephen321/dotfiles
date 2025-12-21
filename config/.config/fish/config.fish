@@ -177,3 +177,4 @@ bind \cg 'lazygit'
 
 zoxide init fish | source
 fzf --fish | source
+jj util completion fish | source
