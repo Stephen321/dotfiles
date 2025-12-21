@@ -1,14 +1,11 @@
 gui:
   showRandomTip: true
-
 os:
   editPreset: 'nvim'
-
 keybinding:
   universal:
     quit: <c-g>
-
 git:
-  paging:
-    colorArg: always
-    pager: delta --dark --paging=never --line-numbers --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"
+  pagers:
+    - colorArg: always
+      pager: delta --dark --paging=never --line-numbers --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"
