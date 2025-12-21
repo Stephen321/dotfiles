@@ -177,4 +177,5 @@ bind \cg 'lazygit'
 
 zoxide init fish | source
 fzf --fish | source
-jj util completion fish | source
+# NOTE: enable if you install https://github.com/jj-vcs/jj
+# jj util completion fish | source
