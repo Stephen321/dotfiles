@@ -93,6 +93,10 @@ config.window_padding = {
 if is_linux then
 	config.color_scheme = "Gruvbox dark, hard (base16)"
 	config.window_background_opacity = 0.5
+	-- TODO: workaround to updated Hyprland - https://github.com/wezterm/wezterm/issues/7156
+	-- This makes use need to either disable wayland in wezterm or double dpi:
+	--	https://github.com/hyprwm/Hyprland/releases/tag/v0.51.0
+	config.dpi = 192.0 * 2 -- twice the default
 else
 	config.color_scheme = "Gruvbox dark, hard (base16)"
 end

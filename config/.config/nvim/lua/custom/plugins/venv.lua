@@ -1,7 +1,8 @@
 return {
 	-- NOTE: This is python specific...should be only enabled if in python pyproject. Other python config is in base init.lua
 	"linux-cultist/venv-selector.nvim",
-	branch = "regexp",
+	ft = "python",
+	branch = "main",
 	dependencies = {
 		"neovim/nvim-lspconfig",
 		"nvim-telescope/telescope.nvim",
@@ -15,7 +16,7 @@ return {
 			parents = 3,
 		})
 	end,
-	lazy = false,
+	lazy = true,
 	-- event = 'VeryLazy', -- Optional: needed only if you want to type `:VenvSelect` without a keymapping
 	keys = {
 		{ ",v", "<cmd>VenvSelect<cr>" },

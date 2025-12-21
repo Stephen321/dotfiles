@@ -631,13 +631,16 @@ require("lazy").setup({
 						-- by the server configuration above. Useful when disabling
 						-- certain features of an LSP (for example, turning off formatting for ts_ls)
 						server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-						require("lspconfig")[server_name].setup(server)
+						vim.lsp.enable(server_name)
+						vim.lsp.config(server_name, server)
 					end,
 				},
 			})
 
 			-- TODO: have to handle gdscript separately to mason-* plugins
-			require("lspconfig").gdscript.setup({
+			local gdscript_name = "gdscript"
+			vim.lsp.enable(gdscript_name)
+			vim.lsp.config(gdscript_name, {
 				capabilities = capabilities,
 				name = "godot",
 				cmd = vim.lsp.rpc.connect("127.0.0.1", 6005),
