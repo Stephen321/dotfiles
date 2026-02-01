@@ -116,7 +116,9 @@ alias l. 'lsd -ald --color=always --group-directories-first .*' # show only dotf
 
 
 # Replace some more things with better alternatives
-abbr cat 'bat --style header,snip,changes'
+# abbr cat 'bat --style header,snip,changes'
+# 20260201 - removed the above style to just use default
+abbr cat 'bat'
 if not test -x /usr/bin/yay; and test -x /usr/bin/paru
     alias yay 'paru'
 end
