@@ -162,7 +162,7 @@ alias apt-get 'man pacman'
 alias please 'sudo'
 alias tb 'nc termbin.com 9999'
 alias helpme 'echo "To print basic information about a command use tldr <command>"'
-alias pacdiff 'sudo -H DIFFPROG=meld pacdiff'
+alias pacdiff 'sudo -H DIFFPROG=vimdiff pacdiff'
 
 # Get the error messages from journalctl
 alias jctl 'journalctl -p 3 -xb'
@@ -178,6 +178,18 @@ end
 # lazygit binding
 bind \cg 'lazygit'
 
+# ssh-agent
+# NOTE: "touch $XDG_RUNTIME_DIR/ssh-agent.env" first
+if not pgrep -u "$USER" ssh-agent > /dev/null
+    ssh-agent -c -t 1h > "$XDG_RUNTIME_DIR/ssh-agent.env"
+end
+if not test -f "$SSH_AUTH_SOCK"
+    source "$XDG_RUNTIME_DIR/ssh-agent.env" >/dev/null
+end
+
+
+
+# completions
 zoxide init fish | source
 fzf --fish | source
 # NOTE: enable if you install https://github.com/jj-vcs/jj
